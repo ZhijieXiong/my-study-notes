@@ -33,7 +33,6 @@
   - $\alpha$是拉格朗日乘数
   - 对偶问题是$\mathop{max}\limits_{\alpha \in \mathbb{R}} D(\alpha)$，即$\mathop{max}\limits_{\alpha \in \mathbb{R}} \mathop{min}\limits_{W \in \mathbb{R}^{d\times d}} L^\rho(W, \alpha)$
   - 实际上原问题是$ \mathop{min}\limits_{W \in \mathbb{R}^{d\times d}} \mathop{max}\limits_{\alpha \in \mathbb{R}} L^\rho(W, \alpha)$
-  - 
 
 
 # CausPref: Causal Preference Learning for Out-of-Distribution Recommendation
@@ -96,7 +95,6 @@
   - 解决以上两个问题
     - 第一个问题：建模$Y_{S_s,I_i,t} = C_{S_s,I_i,t}O_{S_s,I_i,t}R_{S_s,I_i,t}$，其中Y是点击变量，O是曝光变量，R是相关变量，C是根据R算出的用户选择变量（C服从Categorical分布）
     - 第二个问题：定义无偏的损失函数$L^{IPS}_{cloze} = \frac{-1}{|S|\cdot|I|\cdot T}\sum\limits_{s=1}^{|S|}\sum\limits_{t=1}^{T}\sum\limits_{i=1}^{|I|} \mathbb{1}_{\{S^m_{s,t}=<mask>\}}\cdot \frac{Y_{S_s,I_i,t}}{\theta_{S_s,I_i,t}} \cdot log(softmax(f_{\Omega}(S_{s,t},\ I_i)))$
-- 
 
 # Unbiased Recommender Learning from Missing-Not-At-Random Implicit Feedback
 
@@ -327,28 +325,6 @@
   - 数据集：训练：验证：测试=8:1:1
   - the datasets are divided chronologically
 
-
-
-
-
-$log[\ sum(exp(\frac{o^2\ *\ ps}{\beta_0})) + exp(\frac{(o_{pos}-1)^2\ *\ ps}{\beta_0}) - exp(\frac{o_{pos}^2\ *\ ps}{\beta_0})]$
-
-$o$是模型输出，即用户对每个item的分数
-
-$o_{pos}$是用户对positive item（即当前交互的item）的分数
-
-$ps$是倾向分数，实际上是item的频率，根据公式$p(v_i) = (\frac{D_{v_i} + 1}{\sum_j (D_{v_j} +1)})^\gamma$算出来的
-
-
-
-$\mathcal{L}_{DRO}'' = \beta_0 log \ \mathbb{E}_{(s,v) \sim \mu_0} [exp(\frac{loss(s,v)}{\beta_0})]$
-
-损失中没有鲁棒半径$\rho$，但是论文证明了$\rho$和$\beta_0$高度相关，具体来说就是$\mathop{lim}\limits_{\beta_0 \rightarrow \infin} \rho_{\beta_0} = 0$
-
-
-
-
-
 # Contrastive Self-supervised Sequential Recommendation with Robust Augmentation
 
 - 动机
@@ -366,8 +342,6 @@ $\mathcal{L}_{DRO}'' = \beta_0 log \ \mathbb{E}_{(s,v) \sim \mu_0} [exp(\frac{lo
 - 实验设置：用的“5-cores”数据集（序列长度大于等于5，交互次数小于5的item被移除），序列长度固定为50
 
 - 知识追踪和序列推荐的不同之处：知识追踪数据集中相似的序列更多，分布外因素更少（如推荐中用户的interaction可能受到各种因素影响，如广告、气候等）
-
-
 
 # ContrastVAE: Contrastive Variational AutoEncoder for Sequential Recommendation
 
@@ -407,7 +381,6 @@ $\mathcal{L}_{DRO}'' = \beta_0 log \ \mathbb{E}_{(s,v) \sim \mu_0} [exp(\frac{lo
 
 # Debiased Contrastive Learning for Sequential Recommendation
 
-- 动机：
 - 生成图
   - Item Transition Graph $\mathcal{G}_t$：item的概率转移矩阵
   - Item Co-Interaction Graph $\mathcal{G}_c$：item的相似矩阵，用协同过滤的方法计算item之间相似度，即对每一个item统计一个向量，假设总共有5个用户，item 0对向量表示为`[1 0 0 1 1]`，表示用户`0 3 4`和item 0有交互，然后计算item之间的预先相似度，并只保留最相似的k个item，构成一个num_item * num_item的矩阵（稀疏矩阵）

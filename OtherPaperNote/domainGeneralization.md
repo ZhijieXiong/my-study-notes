@@ -11,8 +11,6 @@
 - 思想：通过数据增强增加样本多样性同时，保证样本的可靠性
 - 对抗数据增强通常有明确的优化目标可以应用于网络
 
-
-
 - 和对抗相关的文章
   - `Generalizing across domains via cross-gradient training`
   - It used a Bayesian network to model dependence between label, domain and input instance, and proposed CrossGrad, a cautious data augmentation strategy that perturbs the input along the direction of greatest domain change while changing the class label as little as possible.

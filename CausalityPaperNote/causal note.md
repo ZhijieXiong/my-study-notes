@@ -1,10 +1,6 @@
 - 时间序列传统因果发现：granger causality
 - Linear Latent Causal Processes with Generalized Laplacian Noise
 
-# Structure Learning with Continuous Optimization: A Sober Look and Beyond
-
-
-
 # Treatment Effect Estimation with Data-Driven Variable Decomposition
 
 - ATE estimator

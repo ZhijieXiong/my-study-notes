@@ -1,9 +1,5 @@
 # AdaRNN: Adaptive Learning and Forecasting for Time Series
 
-- 动机
-
-  - 
-
 - 方法
 
   ![](./img/AdaRNN_model_diagram.png)

@@ -1,7 +1,5 @@
 [TOC]
 
-
-
 - flask是用python基于Werkzeug工具箱编写的轻量级的Web开发框架
 
 # 1、基本使用

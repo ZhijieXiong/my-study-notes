@@ -1,11 +1,5 @@
 [TOC]
 
-- 图对比学习
-- 系统可靠性，迁移到新系统没有数据
-- 强行在稠密度低的边上进行采样
-- 长尾现象，不要看overall的指标，这个指标被稠密度高的习题给拉过去了
-- 设计test的采样方式
-
 # Traditional Knowledge Tracing Models
 
 ![](./imgs/survey_traditional_model.png)
@@ -34,36 +28,6 @@
 - Knowledge tracing: Modeling the acquisition of procedural knowledge；为每个学生个性化标准BKT模型的4个参数
 - Modeling individualization in a Bayesian networks implementation of knowledge tracing；启发式地为为每个学生个性化设置其在各个知识点上的先验掌握概率P(L~0~)
 - The impact on individualizing student models on necessary practice opportunities；为每个学生个性化标准BKT模型的4个参数
-
-### Dynamic BKT Model
-
-- 思想
-  - 动机：标准BKT模型假设每道习题仅对应一个知识点，并且不同知识点之间是相互独立的
-
-## Factor Analysis Models
-
-### Item Response Theory (IRT)
-
-- 假设
-
-### Additive Factor Model (AFM)
-
-### Performance Factor Analysis (PFA)
-
-- 思想
-  - 动机：AFM在量化学生在知识点上的尝试（做相关知识点的习题）时，忽略学生做题的结果
-
-### Knowledge Tracing Machine (KTM)
-
-# DKT
-
-
-
-# DKVMN
-
-
-
-
 
 # AKT
 
@@ -353,8 +317,6 @@
 - 构建习题图和知识点图的方法：根据统计信息
   -  习题图：两个习题之间是否有边，通过公式$E^q_{i,j}$ = co-correctness~i,j~ / co-occurring~i,j~，其中分母是习题i和习题j同时（i在前）出现的次数，分子是同时做对的次数（即GKT里的transition，但是在这篇文章里，只去找同一知识点下的习题之间的关系，跨知识点的习题间的关系通过知识点子图学习）
   -  知识点图：同理为$E^c_{i,j}$  = co-correctness~i,j~ / co-occurring~i,j~
-  
--  
 
 # BI-CLKT
 
@@ -387,12 +349,7 @@
   ![image-20230204122150601](./imgs/Bi-CLKT_model_diagram.png)
 
   - 构建习题图：$Q^{ij}_e = \frac{f^c(\mathcal{V}^i_e, \mathcal{V}^j_e)}{\sum_m f^o(\mathcal{V}^i_e, \mathcal{V}^m_e)}$，其中Q^ij^~e~就是节点i（习题）到节点j的关联程度，当这个值大于一个阀值$\tau$时，认为这两个节点之间有边。（有向或者无向？）f^c^表示数据集中做对习题i，然后做对习题j出现的次数，f^o^表示数据集中做了习题i，然后做习题m出现的次数。（前者是co-correctness，后者是co-occurrence）
-  - 
   - 习题增强：使用random和pagerank方法计算出节点和边的重要性，根据这些重要性随机消除节点或者边（重要性越低的被消除的概率越大）
-
-
-
-
 
 # ATKT
 
@@ -427,7 +384,6 @@
     - 学习率：0.001，每50个epoch衰减一半
   - 训练轮数：最大150个epoch，采用early stop方式，如果20个epoch内验证集效果没有提升就停止训练
 
-  
 
 # IEKT
 
@@ -448,8 +404,7 @@
   - KASE中同时使用预测和真实值的原因是：学生有可能猜对答案或者粗心做错，使用这两个信息可以减少噪声
   - M和S都是训练出来的
   - 使用强化学习中的policy gradient来辅助训练
-    - 
-
+  
 - 实验设置
 
   - 5折交叉验证，80%的数据用于训练和验证，20%的数据用于测试
@@ -507,8 +462,6 @@
 
 - 质疑：模型能对学生表现做预测，其实就是学习习题和习题之间、知识点和知识点之间的关系，然后结合历史信息来预测，当模型判断学生在没接触过的知识点上的习题的表现时，也是利用了知识点之间的关系（这种关系就是从所有学生的练习记录中学来的），本质上和这篇文章的思想一样，只是过去的模型没有显式地学习，而是隐式地学习学生之间的关系
 
-
-
 # DIMKT
 
 - 动机：早期的方法没有地探索习题难度对学生学习的影响，最近的有些工作虽然引入了习题难度（如AKT、RKT等），但是只是将习题难度加入习题表征中来改进模型性能，并没有探索习题难度对于学生更新知识状态的影响（比如已经基本掌握知识点1的学生，练习几道关于知识点1的简单习题，对这个学生来说，他在知识点1上的掌握程度并不会有明显提升，但是对于那些还未掌握知识点1的学生来说，如果能做对几道知识点1的简单习题，那么应该判断他们在知识点1上的掌握程度有明显提升）。该文章还提到了一点：学生做对于他们来说过难的习题，会降低其兴趣。此外，之前的工作也都没有考虑知识点难度对习题难度有影响，因此忽略了知识点的难度
@@ -547,15 +500,6 @@
 - 存在的问题
 
   - 从图5来说，第2、3和最后1个习题之间的相似度非常高，原因是它们的习题难度和知识点难度接近，但是它们考察的不是相同的知识点或者相关的知识点（分别对应知识点为全等、最小公倍数和多项式基本知识），直觉上来说不应该这么接近。我认为难度的影响过大。
-
-# VKT
-
-- 动机：
-- 贡献：
-- 任务：学习人类在处理视觉分类任务过程中（动态地变化）所使用的视觉特征以及判别函数
-- 相关工作：度量学习
-
-
 
 # MFDAKT
 
@@ -641,6 +585,7 @@
   - 随机点过程的强度函数定义为$\lambda(t)dt = Pr\{event\ in\ [t,t+dt)|S_t\}$，其中event在知识追踪可以用(question, response)表示，S~t~是学生的历史信息，即{(q~1~, r~1~, T~1~), (q~2~, r~2~, T~2~), ..., (q~t~, r~t~, T~t~)}
   - 如果选择使用霍克斯过程建模，那么$\lambda(t) = \lambda_0 + \sum\limits_{T_i < t}\alpha\kappa(t-T_i)$，$\lambda_0$是基础强度，T~i~表示时间i发生的时间，k是核函数，最常见的核函数是指数核函数，即$\kappa(t)=e^{-\beta t}$
   - 霍克斯过程的假设是历史发生的所有事件都对未来事件的发生有一个正的激励（即核函数的值大于0），其中激励又分为自激励和互激励
+  
 - 模型
   - 仿照霍克斯过程的强度函数，为kt任务设计了类似的强度函数：$\lambda(x_i) = \lambda_0^{x_i} + \sum\limits_{x_j \in S_{t_i}} \alpha_{x_j,x_i}\cdot\kappa_{x_j, x_i}(t_i - t_j)$
   - 第一项是基本强度，x~i~是指目标interaction，即(student, q~i~, t~i~)。基本强度的物理含义是习题以及该习题对应知识点的难度，也就是$\lambda_0^{x_i} = \lambda_0^{q_i} + \lambda_0^{s(q_i)}$
@@ -648,6 +593,7 @@
   - $\alpha_{x_j,x_i}$表示的是cross-skill effect，即过去的事件x~j~对现在的事件——预测目标——x~i~的影响，那么对于一个数据集，总共就有2 * |S| * |S|个cross-skill effect
   - 第二项考虑不同cross-skill effect对目标skill的影响，包含了时间因素（即遗忘），其中核函数$\kappa_{x_j,x_i}(t_j - t_i) = exp(-(1 + \beta_{x_j, x_i}) log(t_j - t_i))$就是考察的时间函数。为了更细粒度地研究不同cross-skill effect在时间上的衰减，每一个cross-skill effect都有一个衰减因子$\beta_{x_j,x_i}$。此外，这里使用了log函数是考虑到数据集中的时间间隔存在长尾现象
   - 最后预测的公式是$\hat{y}_i = Pr\{a_i = 1\} = \frac{1}{1 + e^{-\lambda(x_i)}}$
+  
 - 求模型参数的方法：矩阵分解（协同过滤：相似的历史事件对应的未来相似）
   - 需要求解的参数包括$\lambda_0,\ A\in\mathbb{R}^{2|S|\times|S|},\ B\in\mathbb{R}^{2|S|\times|S|}$，其中A中的元素是$\alpha$，B中的元素是$\beta$
   - 使用矩阵分解的方法，即构建4个Embedding表，分别是$P_A\in\mathbb{R}^{2|S|\times D}, Q_A\in\mathbb{R}^{|S|\times D}, P_B\in\mathbb{R}^{2|S|\times D}, Q_B\in\mathbb{R}^{|S|\times D}$
@@ -657,17 +603,10 @@
     - 直接求解的话，不同的事件对（即(x~j~,x~i~)）是相互独立，那么会降低模型的泛化性
     - 使用矩阵分解，即为每个interaction x学习一个embedding，有利于提高泛化性
   - 使用交叉熵学习参数
+  
 - 实验设置
   - 丢弃序列长度小于5的，每个学生只取前50次练习记录
   - 对于assist2009数据集，假设两次练习时间时间间隔固定为1s
-  
-- 实验结果
-  
-  ```
-  
-  ```
-  
-  
 
 # simpleKT
 
@@ -809,16 +748,10 @@
   # (4, 768)
   ```
 
-  
-
 - 实验相关
   - 构建Direct Support Graph：使用w=2.3
-
   - 构建Indirect Support Graph：使用层次聚类的阀值为9获得1136种problem schema
-
   - Direct Support Graph是3层GNN，Indirect Support Graph是1层GNN
-
-  - 略
 
 # DGMN
 
@@ -1014,10 +947,6 @@
   - 阶段3：Fine-tuning of the Output Layer
     - 在阶段2训练出来的模型后面加一层MLP（输出维度为目标域知识点数目），然后冻住输出层前面的网络，在目标域上进行微调
 
-# CKT
-
-
-
 # Stable Knowledge Tracing using Causal Inference
 
 - 动机
@@ -1140,14 +1069,6 @@
   - 序列长度固定为50，长度低于5的丢弃，时间间隔按秒计算
   - Early stop策略的metric是AUC和ACC的乘积
   
-
-# QIKT
-
-- 动机：
-
-# DTransformer
-
-
 
 # DataAugmentation
 
@@ -1302,24 +1223,4 @@
   - CodeBLEU：CodeBLEU: a Method for Automatic Evaluation of Code Synthesis.
   - test loss
   - 第二类：measure the diversity of predicted student code
-  - dist-N metric (N=1)：A diversity-promoting objective function for neural conversation models.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[^1]: [Deep knowledge tracing](https://proceedings.neurips.cc/paper/5654-deep-knowledge-tracing)
-[^2]: [Dynamic key-value memory networks for knowledge tracing](https://dl.acm.org/doi/abs/10.1145/3038912.3052580)
-[^3]: [Knowledge tracing with sequential key-value memory networks](https://dl.acm.org/doi/abs/10.1145/3331184.3331195)
-[^4]: [Ekt: Exercise-aware knowledge tracing for student performance prediction](https://ieeexplore.ieee.org/abstract/document/8744302/)
-[^5]: [Dynamic student classiffication on memory networks for knowledge tracing](https://link.springer.com/chapter/10.1007/978-3-030-16145-3_13)
+  - dist-N metric (N=1)：A diversity-promoting objective function for neural conversation models
