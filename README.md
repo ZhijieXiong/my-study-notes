@@ -3,22 +3,18 @@
 ```sh
 └── myStudyNote/
     ├── CausalityPaperNote
-    │   ├── .DS_Store
     │   ├── causal note.md
     │   └── img-causal
     ├── FrontBasicNote
-    │   ├── .DS_Store
     │   ├── HtmlAndMarkdownBasicNote
     │   ├── JavaScriptBasicNote
     │   ├── ReactBasicNote
     │   ├── VueBasicNote
     │   └── img
     ├── KnowledgeTracingPaperNote
-    │   ├── .DS_Store
     │   ├── imgs
     │   └── note.md
     ├── LinuxBasicNote
-    │   ├── .DS_Store
     │   ├── Linux命令
     │   ├── Linux基本知识
     │   ├── Linux网络基础
@@ -26,13 +22,11 @@
     │   ├── shell脚本编程
     │   └── 经验常识.md
     ├── MongodbBasicNote
-    │   ├── .DS_Store
     │   ├── 1-基本操作.md
     │   ├── 2-进阶操作.md
     │   ├── 3-接口.md
     │   └── img
     ├── MysqlBasicNote
-    │   ├── .DS_Store
     │   ├── 10、数据备份.md
     │   ├── 1、数据库和数据表的基本操作.md
     │   ├── 2、数据类型和运算符.md
@@ -47,7 +41,6 @@
     │   ├── employees_db
     │   └── 导入数据例程.sql
     ├── OtherBasicNote
-    │   ├── .DS_Store
     │   ├── DockerBasicCommand.md
     │   ├── ENSP-BasicNote
     │   ├── GitBasicNote
@@ -56,12 +49,10 @@
     │   ├── 网络协议
     │   └── 跨域问题解决方案.md
     ├── OtherPaperNote
-    │   ├── .DS_Store
     │   ├── TimeSeriesPrediction.md
     │   ├── domainGeneralization.md
     │   └── img
     ├── PythonBasicNote
-    │   ├── .DS_Store
     │   ├── 01_字符串.md
     │   ├── 02_列表.md
     │   ├── 03_字典.md
@@ -101,7 +92,6 @@
     │   ├── 框架-Flask-3_表单-csrf.md
     │   └── 框架-Scrapy.md
     └── RecommendationSystemPaperNote
-        ├── .DS_Store
         ├── imgs
         └── note.md
 ```
